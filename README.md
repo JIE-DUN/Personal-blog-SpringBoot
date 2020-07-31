@@ -5,15 +5,15 @@
 - Markdown编辑器：[编辑器 Markdown](https://pandao.github.io/editor.md/)
 
 #### 2.后端
-- 核心框架：SpringBoot 2.2.5
-- 项目构建：jdk1.8、Maven 3
+- 核心框架：SpringBoot 2.1.15
+- 项目构建：jdk1.8、Maven
 - 持久层框架：Mybatis
 - 模板框架：Thymeleaf
 - 分页插件：PageHelper
 - 加密：MD5加密
 - 安全框架：shiro
 - 缓存：redis
-- 搜索服务器：elasticSearch
+- 搜索服务器：elasticSearch 6.4.3
 
 #### 3.数据库
 - MySQL 5.5
