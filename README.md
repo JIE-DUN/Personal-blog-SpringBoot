@@ -11,9 +11,9 @@
 - 模板框架：Thymeleaf
 - 分页插件：PageHelper
 - 加密：MD5加密
-- 安全框架：shiro
-- 缓存：redis
-- 搜索服务器：elasticSearch 6.4.3
+- 安全框架：Shiro
+- 缓存：Redis
+- 搜索服务器：EelasticSearch 6.4.3
 
 #### 3.数据库
 - MySQL 5.5
