@@ -25,7 +25,9 @@ public class FriendController {
     @Autowired
     private FriendLinkService friendLinkService;
 
-//    查询所有友链
+	/**
+	 * 查询所有友链
+	 */
     @GetMapping("/friendlinks")
     public String friend(Model model,@RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum){
         PageHelper.startPage(pageNum,10);
@@ -35,14 +37,18 @@ public class FriendController {
         return "admin/friendlinks";
     }
 
-//    跳转友链新增页面
+	/**
+	 * 跳转友链新增页面
+	 */
     @GetMapping("/friendlinks/input")
     public String input(Model model) {
         //model.addAttribute("friendlink", new FriendLink());
         return "admin/friendlinks-input";
     }
 
-//    友链新增
+	/**
+	 * 友链新增
+	 */
     @PostMapping("/friendlinks")
     public String post(@Valid FriendLink friendLink, BindingResult result, RedirectAttributes attributes){
 
@@ -65,14 +71,18 @@ public class FriendController {
         return "redirect:/admin/friendlinks";
     }
 
-//    跳转友链修改页面
+	/**
+	 * 跳转友链修改页面
+	 */
     @GetMapping("/friendlinks/{id}/input")
     public String editInput(@PathVariable Long id, Model model) {
         model.addAttribute("friendlink", friendLinkService.getFriendLink(id));
         return "admin/friendlinks-input";
     }
 
-//    编辑修改友链
+	/**
+	 * 编辑修改友链
+	 */
     @PutMapping("/friendlinks")
     public String editPost(@Valid FriendLink friendLink, RedirectAttributes attributes) {
         int t = friendLinkService.updateFriendLink(friendLink);
@@ -84,8 +94,9 @@ public class FriendController {
         return "redirect:/admin/friendlinks";
     }
 
-//    删除友链
-    //改为deleteMapping
+	/**
+	 * 删除友链
+	 */
     @DeleteMapping("/friendlinks/{id}")
     public String delete(@PathVariable Long id, RedirectAttributes attributes){
         friendLinkService.deleteFriendLink(id);

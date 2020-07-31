@@ -6,6 +6,7 @@ import com.li.blog.entity.Picture;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class PictureServiceImpl implements PictureService {
 
     /**添加图片*/
     @Override
+    @Transactional
     public int savePicture(Picture picture) {
         return pictureDao.savePicture(picture);
     }
@@ -38,12 +40,14 @@ public class PictureServiceImpl implements PictureService {
 
     /**编辑修改相册*/
     @Override
+    @Transactional
     public int updatePicture(Picture picture) {
         return pictureDao.updatePicture(picture);
     }
 
     /**删除照片*/
     @Override
+    @Transactional
     public void deletePicture(Long id) {
         pictureDao.deletePicture(id);
     }

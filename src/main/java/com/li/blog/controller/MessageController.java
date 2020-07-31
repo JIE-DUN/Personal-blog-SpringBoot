@@ -25,6 +25,7 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
+    /**游客留言头像*/
     @Value("${message.avatar}")
     private String avatar;
 
@@ -33,7 +34,9 @@ public class MessageController {
         return "message";
     }
 
-//    查询留言
+    /**
+     * 查询留言
+     */
     @GetMapping("/messagecomment")
     public String messages(Model model) {
         List<Message> messages = messageService.listMessage();
@@ -41,12 +44,13 @@ public class MessageController {
         return "message::messageList";
     }
 
-//    新增留言
+    /**
+     * 新增留言
+     */
     @PostMapping("/message")
     public String post(Message message, HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
         
-        //这里用shiro代替验证////////////////////////////////
         //设置头像
         if (user != null) {
             message.setAvatar(user.getAvatar());
@@ -54,7 +58,6 @@ public class MessageController {
         } else {
             message.setAvatar(avatar);
         }
-        ////////////////////////////////////////////////////////////////
         
         if (message.getParentMessage().getId() != null) {
             message.setParentMessageId(message.getParentMessage().getId());
@@ -65,7 +68,9 @@ public class MessageController {
         return "message::messageList";
     }
 
-//    删除留言
+	/**
+	 * 删除留言
+	 */
     @GetMapping("/messages/{id}/delete")
     public String delete(@PathVariable Long id, RedirectAttributes attributes, Model model){
         messageService.deleteMessage(id);

@@ -8,9 +8,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.RedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.li.blog.NotFoundException;
 import com.li.blog.dao.BlogDao;
@@ -61,6 +60,7 @@ public class BlogServiceImpl implements BlogService {
      * 新增博文
      */
     @Override
+    @Transactional
     public int saveBlog(Blog blog) {
         blog.setCreateTime(new Date());
         blog.setUpdateTime(new Date());
@@ -84,6 +84,7 @@ public class BlogServiceImpl implements BlogService {
      * 更新文章
      */
     @Override
+    @Transactional
     public int updateBlog(ShowBlog showBlog) {
     	//更新文章更新时间
         showBlog.setUpdateTime(new Date());
@@ -103,6 +104,7 @@ public class BlogServiceImpl implements BlogService {
      * 删除博客
      */
     @Override
+    @Transactional
     public void deleteBlog(Long id) {
         blogDao.deleteBlog(id);
         //删除redis里对应数据

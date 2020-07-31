@@ -7,6 +7,7 @@ import com.li.blog.entity.Comment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -84,6 +85,7 @@ public class CommentServiceImpl implements CommentService {
      * 新增评论
      */
     @Override
+    @Transactional
     public int saveComment(Comment comment) {
         comment.setCreateTime(new Date());
         int comments = commentDao.saveComment(comment);
@@ -96,6 +98,7 @@ public class CommentServiceImpl implements CommentService {
      * 删除评论
      */
     @Override
+    @Transactional
     public void deleteComment(Comment comment,Long id) {
         commentDao.deleteComment(id);
         blogDao.getCommentCountById(comment.getBlogId());

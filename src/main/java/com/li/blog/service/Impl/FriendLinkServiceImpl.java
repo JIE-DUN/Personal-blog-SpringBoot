@@ -6,6 +6,7 @@ import com.li.blog.entity.FriendLink;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class FriendLinkServiceImpl implements FriendLinkService {
 
     /**添加友链*/
     @Override
+    @Transactional
     public int saveFriendLink(FriendLink friendLink) {
         return friendLinkDao.saveFriendLink(friendLink);
     }
@@ -44,12 +46,14 @@ public class FriendLinkServiceImpl implements FriendLinkService {
 
     /**编辑修改友链*/
     @Override
+    @Transactional
     public int updateFriendLink(FriendLink friendLink) {
         return friendLinkDao.updateFriendLink(friendLink);
     }
 
     /**删除友链*/
     @Override
+    @Transactional
     public void deleteFriendLink(Long id) {
         friendLinkDao.deleteFriendLink(id);
     }

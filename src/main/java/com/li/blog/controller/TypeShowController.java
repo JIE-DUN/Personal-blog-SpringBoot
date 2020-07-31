@@ -27,7 +27,9 @@ public class TypeShowController {
     @Autowired
     private BlogService blogService;
 
-//    分页查询分类
+	/**
+	 * 分页查询分类
+	 */
     @GetMapping("/types/{id}")
     public String types(@RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum, @PathVariable Long id, Model model) {
         List<Type> types = typeService.getAllTypeAndBlog();

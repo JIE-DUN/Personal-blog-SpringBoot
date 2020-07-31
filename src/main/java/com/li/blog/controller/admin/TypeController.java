@@ -1,19 +1,25 @@
 package com.li.blog.controller.admin;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.li.blog.entity.Type;
 import com.li.blog.service.TypeService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.validation.Valid;
-import java.util.List;
 
 /**
  * 分类管理控制器
@@ -25,7 +31,9 @@ public class TypeController {
     @Autowired
     private TypeService typeService;
 
-//    分页查询分类列表
+	/**
+	 * 分页查询分类列表
+	 */
     @GetMapping("/types")
     public String list(Model model,@RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum){
         //按照排序字段 倒序 排序
@@ -37,14 +45,18 @@ public class TypeController {
         return "admin/types";
     }
 
-//    返回新增分类页面
+	/**
+	 * 返回新增分类页面
+	 */
     @GetMapping("/types/input")
     public String input(Model model){
         //model.addAttribute("type", new Type());
         return "admin/types-input";
     }
 
-//  新增分类
+	/**
+	 * 新增分类
+	 */
     @PostMapping("/types")
     public String post(@Valid Type type, RedirectAttributes attributes) {
         Type type1 = typeService.getTypeByName(type.getName());
@@ -61,14 +73,18 @@ public class TypeController {
         return "redirect:/admin/types";
     }
 
-//    跳转修改分类页面
+	/**
+	 * 跳转修改分类页面
+	 */
     @GetMapping("/types/{id}/input")
     public String editInput(@PathVariable Long id, Model model) {
         model.addAttribute("type", typeService.getType(id));
         return "admin/types-input";
     }
 
-//    编辑修改分类
+	/**
+	 * 编辑修改分类
+	 */
     @PutMapping("/types")
     public String editPost(@Valid Type type, RedirectAttributes attributes) {
         Type type1 = typeService.getTypeByName(type.getName());
@@ -85,7 +101,9 @@ public class TypeController {
         return "redirect:/admin/types";
     }
 
-//    删除分类
+	/**
+	 * 删除分类
+	 */
     @DeleteMapping("/types/{id}")
     public String delete(@PathVariable Long id,RedirectAttributes attributes) {
         typeService.deleteType(id);

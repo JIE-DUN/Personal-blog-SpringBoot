@@ -1,5 +1,7 @@
 package com.li.blog;
 
+import java.util.Date;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +35,6 @@ public class PersonalBlogSpringBootApplicationTests {
 	public void createIndex() throws Exception {
 		template.createIndex(FirstPageBlog.class);
 	}
-
+	
+	
 }

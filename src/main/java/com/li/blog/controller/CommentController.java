@@ -30,11 +30,13 @@ public class CommentController {
 	@Autowired
 	private BlogService blogService;
 
-	//这个直接写成常数，主要作用是游客发表评论的时候用到的头像
+	/**游客头像*/
 	@Value("${comment.avatar}")
 	private String avatar;
 
-	// 查询评论列表
+	/**
+	 * 查询评论列表
+	 */
 	@GetMapping("/comments/{blogId}")
 	public String comments(@PathVariable Long blogId, Model model) {
 		//根据博客id查询评论列表
@@ -43,12 +45,13 @@ public class CommentController {
 		return "blog :: commentList";
 	}
 
-	// 新增评论
+	/**
+	 * 新增评论
+	 */
 	@PostMapping("/comments")
 	public String post(Comment comment, HttpSession session, Model model) {
 		Long blogId = comment.getBlogId();
 		
-		//这里用shiro代替验证////////////////////////////////
 		User user = (User) session.getAttribute("user");
 		if (user != null) {
 			comment.setAvatar(user.getAvatar());
@@ -57,7 +60,6 @@ public class CommentController {
 			// 设置头像
 			comment.setAvatar(avatar);
 		}
-		////////////////////////////////////////////////////////////////
 		
 		//得到父评论id
 		if (comment.getParentComment().getId() != null) {
@@ -69,13 +71,12 @@ public class CommentController {
 		return "blog :: commentList";
 	}
 
-	// 删除评论
-	//TODO  改为DeleteMapping
-	//这个删除评论不应该的登录后才能使用吗
+	/**
+	 * 删除评论
+	 */
 	@GetMapping("/comment/{blogId}/{id}/delete")
 	public String delete(@PathVariable Long blogId, @PathVariable Long id, Comment comment,
 			RedirectAttributes attributes, Model model) {
-		//删除评论，并重新该条博客的总查询评论条数，这里可以直接用{blogId}吧
 		commentService.deleteComment(comment, id);
 		DetailedBlog detailedBlog = blogService.getDetailedBlog(blogId);
 		List<Comment> comments = commentService.listCommentByBlogId(blogId);

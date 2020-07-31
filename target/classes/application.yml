@@ -4,5 +4,7 @@ spring:
   profiles:
     active: dev
 
+#评论头像
 comment.avatar: /images/avatar.png
+#留言头像
 message.avatar: /images/avatar.png

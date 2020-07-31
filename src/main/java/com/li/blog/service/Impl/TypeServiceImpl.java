@@ -20,21 +20,19 @@ public class TypeServiceImpl implements TypeService {
     private TypeDao typeDao;
 
     /**新增保存分类*/
-    @Transactional
     @Override
+    @Transactional
     public int saveType(Type type) {
         return typeDao.saveType(type);
     }
 
     /**根据id查询分类*/
-    @Transactional
     @Override
     public Type getType(Long id) {
         return typeDao.getType(id);
     }
 
     /**查询所有分类*/
-    @Transactional
     @Override
     public List<Type> getAllType() {
         return typeDao.getAllType();
@@ -53,15 +51,15 @@ public class TypeServiceImpl implements TypeService {
     }
 
     /**编辑修改分类*/
-    @Transactional
     @Override
+    @Transactional
     public int updateType(Type type) {
         return typeDao.updateType(type);
     }
 
     /**删除分类*/
-    @Transactional
     @Override
+    @Transactional
     public void deleteType(Long id) {
         typeDao.deleteType(id);
     }

@@ -140,7 +140,8 @@
 
         <div class="ui right aligned container">
           <button type="button" class="ui button" onclick="window.history.go(-1)" >返回</button>
-          <button type="button" id="save-btn" class="ui secondary button" th:if="${blog.published!=true}">保存</button>
+           <!-- or ${blog.published!=true} -->
+          <button type="button" id="save-btn" class="ui secondary button" th:if="${blog==null} or ${blog.published!=true}">保存</button>
           <button type="button" id="publish-btn" class="ui teal button" th:text="${blog!=null} and ${blog.published==true}?'修改':'发布'">发布</button>
         </div>
 
@@ -196,7 +197,7 @@
       }
       function setTime() {
           /*此处为网站的创建时间*/
-          var create_time = Math.round(new Date(Date.UTC(2020, 07, 30, 0, 0, 0)).getTime() / 1000);
+          var create_time = Math.round(new Date(Date.UTC(2020, 06, 30, 0, 0, 0)).getTime() / 1000);
           var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
           currentTime = secondToDate((timestamp - create_time));
           currentTimeHtml = currentTime[0] + '年' + currentTime[1] + '天'

@@ -39,7 +39,9 @@ public class IndexController {
     @Autowired
     private CommentService commentService;
 
-//    分页查询博客列表
+	/**
+	 * 分页查询博客列表
+	 */
     @GetMapping("/")
     public String index(Model model, 
     					@RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum, 
@@ -57,8 +59,9 @@ public class IndexController {
         return "index";
     }
 
-//    搜索博客
-    //这里尝试用elasticsearch改造
+	/**
+	 * 搜索博客
+	 */
     @PostMapping("/search")
     public String search(Model model,
                          @RequestParam(defaultValue = "1", value = "pageNum") Integer pageNum,
@@ -70,7 +73,9 @@ public class IndexController {
         return "search";
     }
 
-//    跳转博客详情页面
+	/**
+	 * 跳转博客详情页面
+	 */
     @GetMapping("/blog/{id}")
     public String blog(@PathVariable Long id, Model model) {
         DetailedBlog detailedBlog = blogService.getDetailedBlog(id);
@@ -88,7 +93,9 @@ public class IndexController {
 //        return "index :: newblogList";
 //    }
 
-//    博客信息
+	/**
+	 * 博客信息
+	 */
     @GetMapping("/footer/blogmessage")
     public String blogMessage(Model model){
         int blogTotal = blogService.getBlogTotal();
