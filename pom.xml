@@ -142,7 +142,7 @@
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-spring</artifactId>
-			<version>1.2.4</version>
+			<version>1.7.0</version>
 		</dependency>
 		<!-- shiro-redis的缓存插件，主要用来存储权限和角色验证 -->
 		<!-- 虽然在这个项目里没用到 -->
